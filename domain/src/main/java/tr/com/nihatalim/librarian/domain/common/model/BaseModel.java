@@ -1,4 +1,4 @@
-package tr.com.nihatalim.librarian.domain.common.usecase.model;
+package tr.com.nihatalim.librarian.domain.common.model;
 
 import java.util.Date;
 
