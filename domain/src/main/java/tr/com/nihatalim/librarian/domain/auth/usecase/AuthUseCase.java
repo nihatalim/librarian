@@ -21,7 +21,7 @@ public class AuthUseCase implements FunctionalUseCase<LoginRequest, LoginRespons
                 .getUser(loginRequest.getUsername(), loginRequest.getPassword())
                 .orElseThrow(UserCredentialsNotValidException::new);
 
-        String token = getUserTokenPort.getTokenByUserName(user.getName());
+        final String token = getUserTokenPort.getTokenByUserName(user.getName());
 
         return new LoginResponse(token);
     }

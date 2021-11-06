@@ -1,8 +1,9 @@
-package tr.com.nihatalim.librarian.infra.util.rest.response;
+package tr.com.nihatalim.librarian.infra.common.rest.util;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import tr.com.nihatalim.librarian.backend.util.rest.exception.BaseException;
+import tr.com.nihatalim.librarian.infra.common.rest.exception.BaseException;
+import tr.com.nihatalim.librarian.infra.common.rest.response.BaseResponse;
 
 public class ResponseUtil {
 

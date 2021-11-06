@@ -1,4 +1,4 @@
-package tr.com.nihatalim.librarian.infra.util.rest.exception;
+package tr.com.nihatalim.librarian.infra.common.rest.exception;
 
 import lombok.Getter;
 import lombok.Setter;

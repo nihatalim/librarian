@@ -1,4 +1,4 @@
-package tr.com.nihatalim.librarian.infra.util.rest.response;
+package tr.com.nihatalim.librarian.infra.common.rest.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

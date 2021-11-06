@@ -1,4 +1,4 @@
-package tr.com.nihatalim.librarian.infra.util.rest.response;
+package tr.com.nihatalim.librarian.infra.common.rest.exception;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -6,7 +6,9 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
-import tr.com.nihatalim.librarian.backend.util.rest.exception.BaseException;
+
+import tr.com.nihatalim.librarian.infra.common.rest.response.BaseResponse;
+import tr.com.nihatalim.librarian.infra.common.rest.util.ResponseUtil;
 
 import java.util.Objects;
 
