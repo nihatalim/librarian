@@ -1,4 +1,4 @@
-package tr.com.nihatalim.librarian.infra.filter;
+package tr.com.nihatalim.librarian.infra.common.rest.filter;
 
 import lombok.RequiredArgsConstructor;
 

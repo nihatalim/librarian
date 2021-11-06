@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import tr.com.nihatalim.librarian.infra.auth.service.UserDetailServiceImpl;
-import tr.com.nihatalim.librarian.infra.filter.JwtFilter;
+import tr.com.nihatalim.librarian.infra.common.rest.filter.JwtFilter;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
