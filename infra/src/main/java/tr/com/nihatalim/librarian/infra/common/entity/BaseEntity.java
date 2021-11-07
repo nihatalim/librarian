@@ -1,8 +1,11 @@
 package tr.com.nihatalim.librarian.infra.common.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +18,8 @@ import java.util.Date;
 
 @Getter
 @Setter
-@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
 @MappedSuperclass
 public abstract class BaseEntity {
     @Id
@@ -27,4 +31,9 @@ public abstract class BaseEntity {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+
+    public BaseEntity() {
+        this.createdAt = new Date();
+        this.updatedAt = new Date();
+    }
 }

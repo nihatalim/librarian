@@ -11,12 +11,15 @@ public class BookConverter implements BaseConverter<BookEntity, Book> {
     @Override
     public Book convert(BookEntity model) {
         return Book.builder()
-                .title(model.getTitle())
-                .ISBN(model.getISBN())
-                .coverPrice(model.getCoverPrice())
-                .image(model.getImage())
-                .status(model.getStatus())
-                .publishYear(model.getPublishYear())
-                .build();
+            .id(model.getId())
+            .createdAt(model.getCreatedAt())
+            .updatedAt(model.getUpdatedAt())
+            .title(model.getTitle())
+            .ISBN(model.getISBN())
+            .coverPrice(model.getCoverPrice())
+            .image(model.getImage())
+            .status(model.getStatus())
+            .publishYear(model.getPublishYear())
+            .build();
     }
 }

@@ -9,6 +9,7 @@ import tr.com.nihatalim.librarian.infra.auth.persistence.entity.LibraryUserEntit
 import tr.com.nihatalim.librarian.infra.auth.persistence.repository.LibraryUserRepository;
 import tr.com.nihatalim.librarian.infra.util.EncoderFactory;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Optional;
 
@@ -20,13 +21,22 @@ public class UserSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        final LibraryUserEntity entity = generateLibraryUser();
+        final LibraryUserEntity libraryUserEntity = generateLibraryUser();
+        final LibraryUserEntity librarianUserEntity = generateLibrarianUser();
 
-        Optional<LibraryUserEntity> user = repository.getLibraryUserEntityByUsername(entity.getUsername());
-
-        if (!user.isPresent()) {
-            repository.save(entity);
+        if (repository.count() == 0) {
+            repository.saveAll(Arrays.asList(libraryUserEntity, librarianUserEntity));
         }
+    }
+
+    private LibraryUserEntity generateLibrarianUser() {
+        LibraryUserEntity libraryUserEntity = new LibraryUserEntity();
+        libraryUserEntity.setUsername("librarian");
+        libraryUserEntity.setPassword(encoderFactory.hash("1234"));
+        libraryUserEntity.setCreatedAt(new Date());
+        libraryUserEntity.setUpdatedAt(new Date());
+
+        return libraryUserEntity;
     }
 
     private LibraryUserEntity generateLibraryUser() {

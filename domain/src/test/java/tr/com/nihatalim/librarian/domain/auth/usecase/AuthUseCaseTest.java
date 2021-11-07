@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 import tr.com.nihatalim.librarian.domain.auth.dto.request.LoginRequest;
 import tr.com.nihatalim.librarian.domain.auth.dto.response.LoginResponse;
 import tr.com.nihatalim.librarian.domain.auth.exception.UserCredentialsNotValidException;
-import tr.com.nihatalim.librarian.domain.auth.usecase.port.FakeGetUserPort;
+import tr.com.nihatalim.librarian.domain.auth.usecase.port.FakeGetUserByCredentialPort;
 import tr.com.nihatalim.librarian.domain.auth.usecase.port.FakeGetUserTokenPort;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AuthUseCaseTest {
-    private final AuthUseCase authUseCase = new AuthUseCase(new FakeGetUserPort(), new FakeGetUserTokenPort());
+    private final AuthUseCase authUseCase = new AuthUseCase(new FakeGetUserByCredentialPort(), new FakeGetUserTokenPort());
 
     @Test
     void whenUserCredentialsNotValid_thenThrowException() {

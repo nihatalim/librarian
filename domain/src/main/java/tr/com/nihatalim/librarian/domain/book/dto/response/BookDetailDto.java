@@ -1,13 +1,11 @@
-package tr.com.nihatalim.librarian.domain.book.model;
+package tr.com.nihatalim.librarian.domain.book.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import lombok.experimental.SuperBuilder;
-import tr.com.nihatalim.librarian.domain.common.model.BaseModel;
+import tr.com.nihatalim.librarian.domain.book.model.BookStatus;
 
 import java.math.BigDecimal;
 
@@ -15,12 +13,17 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@SuperBuilder
-public class Book extends BaseModel {
+@Builder
+public class BookDetailDto {
     private String title;
     private String ISBN;
+
     private Integer publishYear;
     private BigDecimal coverPrice;
+
     private String image;
+
     private BookStatus status;
+
+    private String checkedUser;
 }

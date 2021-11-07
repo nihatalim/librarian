@@ -10,16 +10,22 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import tr.com.nihatalim.librarian.infra.auth.service.UserDetailServiceImpl;
-import tr.com.nihatalim.librarian.infra.common.rest.filter.JwtFilter;
+import tr.com.nihatalim.librarian.infra.common.rest.filter.JwtProperties;
+import tr.com.nihatalim.librarian.infra.common.rest.filter.JwtRequestFilter;
+import tr.com.nihatalim.librarian.infra.common.rest.filter.JwtRequestVerifier;
+
+import javax.crypto.SecretKey;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailServiceImpl userDetailsService;
-    private final JwtFilter jwtFilter;
+
+    private final JwtProperties jwtProperties;
+
+    private final SecretKey secretKey;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -29,11 +35,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .authorizeRequests().antMatchers("/auth").permitAll()
-                .anyRequest().authenticated()
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+            .authorizeRequests().antMatchers("/auth").permitAll()
+            .anyRequest().authenticated()
+            .and()
+            .addFilter(new JwtRequestFilter(authenticationManager(), jwtProperties, secretKey))
+            .addFilterAfter(new JwtRequestVerifier(secretKey,jwtProperties),JwtRequestFilter.class)
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean
